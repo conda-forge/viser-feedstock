@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/viser-{{ version }}.tar.gz
   sha256: 6653b02e707c87f3aa7b6afbcfc4a4b96c14a699e60493f6cc8b254c1b3dc2df
+  patches:
+    - patches/0001-Remove-pyliblzfse-from-install-requirements.patch
 
 build:
   noarch: python
