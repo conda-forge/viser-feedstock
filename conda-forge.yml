@@ -8,4 +8,6 @@ conda_build:
 conda_forge_output_validation: true
 bot:
   automerge: true
-  inspection: update-all
+  # Keep dependency analysis in version PRs, but avoid the v1 recipe dependency
+  # auto-edit path that currently crashes on exact-string dependency mismatches.
+  inspection: hint-all
