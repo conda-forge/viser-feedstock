@@ -34,7 +34,7 @@ requirements:
   run:
     - python >=${{ python_min }}
     - requests >=2.0.0,<3.0.0
-    - websockets >=13.1,<16.0.0
+    - websockets >=13.1,<17.0.0
     - numpy >=1.0.0,<3.0.0
     - msgspec >=0.18.6,<1.0.0
     - imageio >=2.0.0,<3.0.0
@@ -49,7 +49,9 @@ tests:
       imports:
         - viser
       pip_check: true
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script:
       # Browser e2e tests require Playwright-managed browsers; keep the
       # feedstock validation to import and unit-level tests.
@@ -61,6 +63,9 @@ tests:
       source:
         - upstream-src/tests/
         - upstream-src/docs/source/api/
+        # Upstream's camera-default parity tests inspect the TypeScript source.
+        - upstream-src/src/viser/client/src/CameraControls.tsx
+        - upstream-src/src/viser/client/src/InitialCameraState.ts
     requirements:
       run:
         - hypothesis
@@ -75,5 +80,6 @@ about:
   license_file: LICENSE
 
 extra:
+  feedstock-name: viser
   recipe-maintainers:
     - jeongseok-meta
